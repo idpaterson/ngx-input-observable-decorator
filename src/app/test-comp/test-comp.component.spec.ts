@@ -67,4 +67,17 @@ describe('TestCompComponent', () => {
         component.stringInput2 = 'test1';
         expect(component.stringInput).not.toEqual(component.stringInput2);
     });
+
+    it('should allow enumeration of input properties', () => {
+        component.stringInput = 'test';
+        component.stringInput2 = 'test';
+        component.renamedStringInput = 'test';
+        component.renamedStringInput2 = 'test';
+        const propNames = Object.getOwnPropertyNames(component);
+        expect(propNames).toContain('nonObservableInput');
+        expect(propNames).toContain('stringInput');
+        expect(propNames).toContain('stringInput$');
+        expect(propNames).toContain('renamedStringInput');
+        expect(propNames).toContain('renamedStringInput2');
+    });
 });
